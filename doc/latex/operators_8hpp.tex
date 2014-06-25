@@ -1,0 +1,362 @@
+\hypertarget{operators_8hpp}{\section{include/operators.hpp File Reference}
+\label{operators_8hpp}\index{include/operators.\-hpp@{include/operators.\-hpp}}
+}
+{\ttfamily \#include $<$gsl/gsl\-\_\-rng.\-h$>$}\\*
+{\ttfamily \#include $<$gsl/gsl\-\_\-randist.\-h$>$}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{operators_8hpp_a59f848f0879ce4a2889074e0b6d482bc}{laplacian5\-\_\-per\-\_\-grid} (double $\ast$$\ast$u, int i, int j, int M, int N, float hsq)
+\item 
+double \hyperlink{operators_8hpp_afa62c41028a94d55f531cdbb96503e36}{laplacian5\-\_\-per\-\_\-grid} (double $\ast$$\ast$u, int i, int j, int N, float hsq)
+\item 
+double \hyperlink{operators_8hpp_acf8c2f9f3ddd4fff526bd6bd034c610c}{laplacian9\-\_\-per} (double $\ast$$\ast$u, int i, int j, int M, int N, float hsq)
+\item 
+double \hyperlink{operators_8hpp_a72e9a3ef9e3f23880ff0f64f3de6be9d}{gauss\-\_\-noise} (double target, float cell\-\_\-cap\-\_\-1\-D, float noise\-\_\-stddev, float level, gsl\-\_\-rng $\ast$rgen)
+\item 
+double \hyperlink{operators_8hpp_a6c03a22f4f744daaa2a211bc3042aa94}{unif\-\_\-lin\-\_\-noise} (double target, double level)
+\item 
+{\footnotesize template$<$typename Numeric\-Type $>$ }\\void \hyperlink{operators_8hpp_aecb24b0127f1ed4c97f88077630b794e}{set\-\_\-concentration} (Numeric\-Type $\ast$$\ast$a, Numeric\-Type conc, int xlo, int ylo, int xhi, int yhi, int nrows, int ncols)
+\item 
+void \hyperlink{operators_8hpp_a997f4777b8b668d6b3b7d5f9cb6c6d5c}{clone\-\_\-values} (double $\ast$$\ast$src, double $\ast$$\ast$dest, int nrows, int ncols)
+\item 
+double \hyperlink{operators_8hpp_a6cbbd3792358af15f053b94dcb4ed68a}{total\-\_\-conc} (double $\ast$$\ast$mat, int nrows, int ncols)
+\item 
+std\-::vector$<$ int $>$ \hyperlink{operators_8hpp_a357c82dddac97252c018fec8332babf0}{get\-\_\-mutation\-\_\-coords} (char mscheme, double $\ast$$\ast$v, int xlo, int xhi, int ylo, int yhi)
+\item 
+void \hyperlink{operators_8hpp_afa376cd71c2701770143819f09001d61}{mutation\-\_\-event} (double $\ast$$\ast$wt, double $\ast$$\ast$mut, int M, int N, float mfract, int msize, char mscheme, bool m\-\_\-internal)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This header contains the implementations of \char`\"{}operators\char`\"{} (term very loosely defined), which are used in the evolution rules of the R\-D system or to modify the system state in some way. 
+
+Definition in file \hyperlink{operators_8hpp_source}{operators.\-hpp}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{operators_8hpp_a997f4777b8b668d6b3b7d5f9cb6c6d5c}{\index{operators.\-hpp@{operators.\-hpp}!clone\-\_\-values@{clone\-\_\-values}}
+\index{clone\-\_\-values@{clone\-\_\-values}!operators.hpp@{operators.\-hpp}}
+\subsubsection[{clone\-\_\-values}]{\setlength{\rightskip}{0pt plus 5cm}void clone\-\_\-values (
+\begin{DoxyParamCaption}
+\item[{double $\ast$$\ast$}]{src, }
+\item[{double $\ast$$\ast$}]{dest, }
+\item[{int}]{nrows, }
+\item[{int}]{ncols}
+\end{DoxyParamCaption}
+)}}\label{operators_8hpp_a997f4777b8b668d6b3b7d5f9cb6c6d5c}
+Copy concentrations from one matrix to the other (replacing previous values) The caller should check destination matrix dimensions to be no greater than the source.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em src} & Source matrix \\
+\hline
+\mbox{\tt in}  & {\em nrows,ncols} & Source matrix size \\
+\hline
+\mbox{\tt out}  & {\em dest} & Destination matrix, which should be smaller or equal to the source. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 296 of file operators.\-hpp.
+
+\hypertarget{operators_8hpp_a72e9a3ef9e3f23880ff0f64f3de6be9d}{\index{operators.\-hpp@{operators.\-hpp}!gauss\-\_\-noise@{gauss\-\_\-noise}}
+\index{gauss\-\_\-noise@{gauss\-\_\-noise}!operators.hpp@{operators.\-hpp}}
+\subsubsection[{gauss\-\_\-noise}]{\setlength{\rightskip}{0pt plus 5cm}double gauss\-\_\-noise (
+\begin{DoxyParamCaption}
+\item[{double}]{target, }
+\item[{float}]{cell\-\_\-cap\-\_\-1\-D, }
+\item[{float}]{noise\-\_\-stddev, }
+\item[{float}]{level, }
+\item[{gsl\-\_\-rng $\ast$}]{rgen}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{operators_8hpp_a72e9a3ef9e3f23880ff0f64f3de6be9d}
+Gaussian noise with sigma = noise\-\_\-level $\ast$ sqrt(target\-\_\-value) and mean = 0
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em target} & Base value of the concentration to perturb with noise \\
+\hline
+\mbox{\tt in}  & {\em cell\-\_\-cap} & Square root of grid cell particle capacity \\
+\hline
+\mbox{\tt in}  & {\em noise\-\_\-var} & Variance of gaussian noise \\
+\hline
+\mbox{\tt in}  & {\em level} & Noise level present in the system \\
+\hline
+\mbox{\tt in}  & {\em rgen} & G\-S\-L random number generator \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Amount of noise 
+\end{DoxyReturn}
+
+
+Definition at line 218 of file operators.\-hpp.
+
+\hypertarget{operators_8hpp_a357c82dddac97252c018fec8332babf0}{\index{operators.\-hpp@{operators.\-hpp}!get\-\_\-mutation\-\_\-coords@{get\-\_\-mutation\-\_\-coords}}
+\index{get\-\_\-mutation\-\_\-coords@{get\-\_\-mutation\-\_\-coords}!operators.hpp@{operators.\-hpp}}
+\subsubsection[{get\-\_\-mutation\-\_\-coords}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$int$>$ get\-\_\-mutation\-\_\-coords (
+\begin{DoxyParamCaption}
+\item[{char}]{mscheme, }
+\item[{double $\ast$$\ast$}]{v, }
+\item[{int}]{xlo, }
+\item[{int}]{xhi, }
+\item[{int}]{ylo, }
+\item[{int}]{yhi}
+\end{DoxyParamCaption}
+)}}\label{operators_8hpp_a357c82dddac97252c018fec8332babf0}
+Returns the coordinates at which a mutation event should take place, given scheme and bounds. Not an operator in the sense of this file, but seems like the best place to put it.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mscheme} & The mutation scheme \\
+\hline
+\mbox{\tt in}  & {\em v} & The data matrix of the species underogoing mutation \\
+\hline
+\mbox{\tt in}  & {\em xlo,xhi,ylo,yhi} & Inclusive bounds in which to place event \\
+\hline
+\mbox{\tt in}  & {\em L\-O\-W\-L\-I\-M} & The effective null concentration (passed since def'd in main file) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Coordinates as a vector$<$int$>$ of 2 elements 
+\end{DoxyReturn}
+
+
+Definition at line 339 of file operators.\-hpp.
+
+\hypertarget{operators_8hpp_a59f848f0879ce4a2889074e0b6d482bc}{\index{operators.\-hpp@{operators.\-hpp}!laplacian5\-\_\-per\-\_\-grid@{laplacian5\-\_\-per\-\_\-grid}}
+\index{laplacian5\-\_\-per\-\_\-grid@{laplacian5\-\_\-per\-\_\-grid}!operators.hpp@{operators.\-hpp}}
+\subsubsection[{laplacian5\-\_\-per\-\_\-grid}]{\setlength{\rightskip}{0pt plus 5cm}double laplacian5\-\_\-per\-\_\-grid (
+\begin{DoxyParamCaption}
+\item[{double $\ast$$\ast$}]{u, }
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{int}]{M, }
+\item[{int}]{N, }
+\item[{float}]{hsq}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{operators_8hpp_a59f848f0879ce4a2889074e0b6d482bc}
+Discrete Laplacian with 5-\/point method and periodic boundaries.
+
+Note on implementation\-: Boundary tests done explicitly (not with modulos) for speed since this is the simulation bottleneck (profiled). The code is cumbersome but faster.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em u} & Concentration matrix \\
+\hline
+\mbox{\tt in}  & {\em i,j} & Grid coordinates, i\-: M, j\-:N \\
+\hline
+\mbox{\tt in}  & {\em M,N} & Matrix size \\
+\hline
+\mbox{\tt in}  & {\em hsq} & Spatial discretisation step squared $ h^2 = {\Delta x}^2 = \frac{L}{N}^2 $ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Laplacian approximation 
+\end{DoxyReturn}
+
+
+Definition at line 50 of file operators.\-hpp.
+
+\hypertarget{operators_8hpp_afa62c41028a94d55f531cdbb96503e36}{\index{operators.\-hpp@{operators.\-hpp}!laplacian5\-\_\-per\-\_\-grid@{laplacian5\-\_\-per\-\_\-grid}}
+\index{laplacian5\-\_\-per\-\_\-grid@{laplacian5\-\_\-per\-\_\-grid}!operators.hpp@{operators.\-hpp}}
+\subsubsection[{laplacian5\-\_\-per\-\_\-grid}]{\setlength{\rightskip}{0pt plus 5cm}double laplacian5\-\_\-per\-\_\-grid (
+\begin{DoxyParamCaption}
+\item[{double $\ast$$\ast$}]{u, }
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{int}]{N, }
+\item[{float}]{hsq}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{operators_8hpp_afa62c41028a94d55f531cdbb96503e36}
+Discrete Laplacian with 5-\/point method and periodic boundaries\-: square matrix version
+
+The square matrix case was defined as a separate function as an optimization to reduce the overhead of a redundant argument.
+
+Note on implementation\-: Boundary tests done explicitly (not with modulos) for speed since this is the simulation bottleneck (profiled). The code is cumbersome but faster.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em u} & Concentration matrix \\
+\hline
+\mbox{\tt in}  & {\em i,j} & Grid coordinates \\
+\hline
+\mbox{\tt in}  & {\em N} & Matrix size \\
+\hline
+\mbox{\tt in}  & {\em hsq} & Spatial discretisation step squared $ h^2 = {\Delta x}^2 = \frac{L}{N}^2 $ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Laplacian approximation 
+\end{DoxyReturn}
+
+
+Definition at line 101 of file operators.\-hpp.
+
+\hypertarget{operators_8hpp_acf8c2f9f3ddd4fff526bd6bd034c610c}{\index{operators.\-hpp@{operators.\-hpp}!laplacian9\-\_\-per@{laplacian9\-\_\-per}}
+\index{laplacian9\-\_\-per@{laplacian9\-\_\-per}!operators.hpp@{operators.\-hpp}}
+\subsubsection[{laplacian9\-\_\-per}]{\setlength{\rightskip}{0pt plus 5cm}double laplacian9\-\_\-per (
+\begin{DoxyParamCaption}
+\item[{double $\ast$$\ast$}]{u, }
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{int}]{M, }
+\item[{int}]{N, }
+\item[{float}]{hsq}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{operators_8hpp_acf8c2f9f3ddd4fff526bd6bd034c610c}
+Discrete Laplacian with 9-\/point method and periodic boundaries.
+
+Note on implementation\-: Boundary tests done explicitly (not with modulos) for speed since this is the simulation bottleneck (profiled). The code is cumbersome but faster.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em u} & Concentration matrix \\
+\hline
+\mbox{\tt in}  & {\em i,j} & Grid coordinates \\
+\hline
+\mbox{\tt in}  & {\em M,N} & Matrix size \\
+\hline
+\mbox{\tt in}  & {\em hsq} & Spatial discretisation step squared $ h^2 = {\Delta x}^2 = \frac{L}{N}^2 $ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Laplacian approximation 
+\end{DoxyReturn}
+
+
+Definition at line 149 of file operators.\-hpp.
+
+\hypertarget{operators_8hpp_afa376cd71c2701770143819f09001d61}{\index{operators.\-hpp@{operators.\-hpp}!mutation\-\_\-event@{mutation\-\_\-event}}
+\index{mutation\-\_\-event@{mutation\-\_\-event}!operators.hpp@{operators.\-hpp}}
+\subsubsection[{mutation\-\_\-event}]{\setlength{\rightskip}{0pt plus 5cm}void mutation\-\_\-event (
+\begin{DoxyParamCaption}
+\item[{double $\ast$$\ast$}]{wt, }
+\item[{double $\ast$$\ast$}]{mut, }
+\item[{int}]{M, }
+\item[{int}]{N, }
+\item[{float}]{mfract, }
+\item[{int}]{msize, }
+\item[{char}]{mscheme, }
+\item[{bool}]{m\-\_\-internal}
+\end{DoxyParamCaption}
+)}}\label{operators_8hpp_afa376cd71c2701770143819f09001d61}
+Introduces a mutant \char`\"{}drop\char`\"{} of given parameters into the system at certain coordinates, according to given scheme.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em wt} & Wild type species concentration matrix, upon which the mutant parameters are based \\
+\hline
+\mbox{\tt in}  & {\em mut} & Mutant species concentration matrix, into which the drop is placed \\
+\hline
+\mbox{\tt in}  & {\em M,N} & Size of the concentration matrices \\
+\hline
+\mbox{\tt in}  & {\em mfract} & Concentration of mutant drop or fraction of converted wild type, based on \\
+\hline
+ & {\em m\-\_\-internal} & \\
+\hline
+\mbox{\tt in}  & {\em msize} & The size (Moore radius) of the mutant drop to place \\
+\hline
+\mbox{\tt in}  & {\em mscheme} & Way in which to place the drop (M = at maximum peak of wild type, m = at a minimum of wt, r = random) \\
+\hline
+\mbox{\tt in}  & {\em m\-\_\-internal} & \char`\"{}\-Internal\char`\"{} mutation\-: convert \\
+\hline
+ & {\em mfract} & of the wild type to mutant \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 405 of file operators.\-hpp.
+
+\hypertarget{operators_8hpp_aecb24b0127f1ed4c97f88077630b794e}{\index{operators.\-hpp@{operators.\-hpp}!set\-\_\-concentration@{set\-\_\-concentration}}
+\index{set\-\_\-concentration@{set\-\_\-concentration}!operators.hpp@{operators.\-hpp}}
+\subsubsection[{set\-\_\-concentration}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Numeric\-Type $>$ void set\-\_\-concentration (
+\begin{DoxyParamCaption}
+\item[{Numeric\-Type $\ast$$\ast$}]{a, }
+\item[{Numeric\-Type}]{conc, }
+\item[{int}]{xlo, }
+\item[{int}]{ylo, }
+\item[{int}]{xhi, }
+\item[{int}]{yhi, }
+\item[{int}]{nrows, }
+\item[{int}]{ncols}
+\end{DoxyParamCaption}
+)}}\label{operators_8hpp_aecb24b0127f1ed4c97f88077630b794e}
+Sets the concentration of a given area to a given value. Any invalid parameters leave the matrix unaltered.
+
+Notes\-:
+\begin{DoxyEnumerate}
+\item The limits are virtual coordinates that go beyond array bounds (e.\-g. (-\/32, ncols+100)) and which wrap around while looping over area. This approach is for long wrap-\/arounds that cause ambiguity in resulting area to be set.
+\item As long as type(a) == type(conc), any data type could be passed.
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em a} & The concentration matrix \\
+\hline
+\mbox{\tt in}  & {\em conc} & The concentration to set \\
+\hline
+\mbox{\tt in}  & {\em xlo,ylo} & Lower corner of area to set (inclusive); x\-: matix lines, y\-: columns \\
+\hline
+\mbox{\tt in}  & {\em xhi,yhi} & Higher corner of area to set (inclusive); x\-: matix lines, y\-: columns \\
+\hline
+\mbox{\tt in}  & {\em nrows,ncols} & Size of matrix (rows, columns) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 266 of file operators.\-hpp.
+
+\hypertarget{operators_8hpp_a6cbbd3792358af15f053b94dcb4ed68a}{\index{operators.\-hpp@{operators.\-hpp}!total\-\_\-conc@{total\-\_\-conc}}
+\index{total\-\_\-conc@{total\-\_\-conc}!operators.hpp@{operators.\-hpp}}
+\subsubsection[{total\-\_\-conc}]{\setlength{\rightskip}{0pt plus 5cm}double total\-\_\-conc (
+\begin{DoxyParamCaption}
+\item[{double $\ast$$\ast$}]{mat, }
+\item[{int}]{nrows, }
+\item[{int}]{ncols}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{operators_8hpp_a6cbbd3792358af15f053b94dcb4ed68a}
+Returns total concentration. Written for convenience.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mat} & Cocentration matrix \\
+\hline
+\mbox{\tt in}  & {\em nrows,ncols} & Matrix size \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Total concentration (simple sum) 
+\end{DoxyReturn}
+
+
+Definition at line 311 of file operators.\-hpp.
+
+\hypertarget{operators_8hpp_a6c03a22f4f744daaa2a211bc3042aa94}{\index{operators.\-hpp@{operators.\-hpp}!unif\-\_\-lin\-\_\-noise@{unif\-\_\-lin\-\_\-noise}}
+\index{unif\-\_\-lin\-\_\-noise@{unif\-\_\-lin\-\_\-noise}!operators.hpp@{operators.\-hpp}}
+\subsubsection[{unif\-\_\-lin\-\_\-noise}]{\setlength{\rightskip}{0pt plus 5cm}double unif\-\_\-lin\-\_\-noise (
+\begin{DoxyParamCaption}
+\item[{double}]{target, }
+\item[{double}]{level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{operators_8hpp_a6c03a22f4f744daaa2a211bc3042aa94}
+Uniform linear noise in the range (-\/target$\ast$level, +target$\ast$level) (uniform\-: range as function of target)
+
+Note\-: used for some tests but rand() is not to be trusted.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em target} & $>$=0 Base value of the concentration to perturb with noise \\
+\hline
+\mbox{\tt in}  & {\em level} & $>$=0 Noise level present in the system \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Amount of noise 
+\end{DoxyReturn}
+
+
+Definition at line 235 of file operators.\-hpp.
+

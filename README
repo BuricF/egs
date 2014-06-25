@@ -1,0 +1,74 @@
+EGS - Extended Gray-Scott Model simulation package
+
+
+== Required environment and libraries ==
+
+The source code is meant to be portable, the only issue being the hardcoded
+file paths which might need converting to Windows (backslash-separated) format.
+Furthermore, the simulation control script is written in the Bash shell language
+with a *nix system in mind, but this is not necessary for compiling or running 
+the simulator. It simply automates certain tasks (the author recommends studying this script).
+
+The program requires the GNU Scientific Library (GSL) for random number generation.
+GSL version 1.15 was used during development but the few functions employed should exist in much
+earlier version. The compiler flags to link with the library are:
+
+    -lgsl -lgslcblas -lm
+
+Optionally, portions of the codes are parallelizable with the OpenMP library,
+which should be included with your compiler. 
+The program has been compiled with GCC versions 4.6.3 in the latest iteration.
+Earlier version should be fine, but the status of OpenMP implementation should be checked,
+as well as the various compiler flags.
+The flags used were:
+
+ -O3 -Wall -Wextra -funsafe-loop-optimizations -xT -fipa-pta -ftracer -march=native -fopenmp
+
+The author recommends studying the GCC documentation for these flags.
+Only mathematically-safe optimizations were enabled.
+
+
+The statistics and plotting are done with Python (2.7.*) scripts,
+using matplotlib library version >= 1.2.1
+
+
+== Using the simulators ==
+
+The two simulation versions, the fixed species egs_cycle 
+and the evolution egs_cycle_evol may be compiled from src/ and run without any arguments since 
+the parameters are hardcoded except for the initial conditions, which are loaded from a single file.
+(Which file is used is hardcoded though). These .cond files are in the cond/ subdirectory 
+and specify the area and concentrations of the initial concentration perturbations.
+It is assumed that outside these specified areas the grid holds 
+constant [U] = 1 and [V_i] = 0 concentrations.
+
+Simulation data is saved to the simdata/ directory and this is where the scripts assume 
+the data is located and where their own output is saved.
+On POSIX systems (e.g. Linux), this directory may be replaced with a symbolic or hard link since
+data may be wished to be saved on a larger drive.
+
+Two scripts are included:
+    scripts/plotter.py  Plots the grid at each output generation and save these as a movie file,
+                        or, optionally, as separate frames.
+                        (see plotter.py for documentation on options)
+    scripts/stats.py    Plots statistics (e.g. total concentrations over simulation time) 
+                        collected from the simulation output .dat files (see script for options)
+
+These may be called without any arguments and the default behaviour is 
+plotting data (movie, statistics) for the entire length of the simulation.
+
+The simulation compilation, execution, and additional tasks (including clean-up, viewing and emailing results) 
+is made easier by running the *_run.sh scripts for each of these two versions.
+These place the executables (binaries) in the bin/ subdirectory, though the working directory is
+the one holding the .sh scripts. It is recommended to study these.
+
+Minimal Doxygen documentation has been generated for the simulators (start at doc/html/index.html)
+though the code as well as the scripts are meant to be self-documenting and to be inspected/modified when in use, 
+at least for setting parameters.
+
+
+= Notes on implementation =
+
+The various design (or lack thereof) considerations were adopted in order to prioritise speed of execution,
+while keeping the architecture modular and extensible. 
+Thus the many micro-optimisations and bare C-like data structures encapsulated or not in C++ classes.

@@ -1,0 +1,459 @@
+\hypertarget{egs__cycle__dynamics_8hpp}{\section{include/egs\-\_\-cycle\-\_\-dynamics.hpp File Reference}
+\label{egs__cycle__dynamics_8hpp}\index{include/egs\-\_\-cycle\-\_\-dynamics.\-hpp@{include/egs\-\_\-cycle\-\_\-dynamics.\-hpp}}
+}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{egs__cycle__dynamics_8hpp_abd448c8c58efd4c28868a38511ee37d9}{react\-\_\-u} (double $\ast$$\ast$u, double $\ast$$\ast$v1, double $\ast$$\ast$v2, double $\ast$$\ast$v3, int i, int j, float hsq, int M, int N, float r\mbox{[}$\,$\mbox{]}\mbox{[}3\mbox{]}, float F, float Du)
+\item 
+double \hyperlink{egs__cycle__dynamics_8hpp_a49b8c0678c4f4013f4bc399c3522740d}{react\-\_\-v1} (double $\ast$$\ast$u, double $\ast$$\ast$v1, double $\ast$$\ast$v2, double $\ast$$\ast$v3, int i, int j, float hsq, int M, int N, float r\mbox{[}$\,$\mbox{]}\mbox{[}3\mbox{]}, float F, float k1, float Dc)
+\item 
+double \hyperlink{egs__cycle__dynamics_8hpp_ac640fc387d927e346322728d5674ffd9}{react\-\_\-v2} (double $\ast$$\ast$u, double $\ast$$\ast$v1, double $\ast$$\ast$v2, double $\ast$$\ast$v3, int i, int j, float hsq, int M, int N, float r\mbox{[}$\,$\mbox{]}\mbox{[}3\mbox{]}, float F, float k2, float Dc)
+\item 
+double \hyperlink{egs__cycle__dynamics_8hpp_ac20d3e10d8e19856233d68e5b311a1d4}{react\-\_\-v3} (double $\ast$$\ast$u, double $\ast$$\ast$v1, double $\ast$$\ast$v2, double $\ast$$\ast$v3, int i, int j, float hsq, int M, int N, float r\mbox{[}$\,$\mbox{]}\mbox{[}3\mbox{]}, float F, float k3, float Dc)
+\item 
+double \hyperlink{egs__cycle__dynamics_8hpp_abcbeddb6002bb70c550fb3c0fcdb90b6}{react\-\_\-u} (double $\ast$$\ast$u, double $\ast$$\ast$v1, double $\ast$$\ast$v2, double $\ast$$\ast$v3, int i, int j, float hsq, int M, int N, float r\mbox{[}$\,$\mbox{]}\mbox{[}3\mbox{]}, float F, float Du, float cell\-\_\-cap\-\_\-1\-D, float noise\-\_\-stddev, float noise\-\_\-level, gsl\-\_\-rng $\ast$rgen)
+\item 
+double \hyperlink{egs__cycle__dynamics_8hpp_acfcdb431c4bcf00530805e53391c1145}{react\-\_\-v1} (double $\ast$$\ast$u, double $\ast$$\ast$v1, double $\ast$$\ast$v2, double $\ast$$\ast$v3, int i, int j, float hsq, int M, int N, float r\mbox{[}$\,$\mbox{]}\mbox{[}3\mbox{]}, float F, float k1, float Dc, float cell\-\_\-cap\-\_\-1\-D, float noise\-\_\-stddev, float noise\-\_\-level, gsl\-\_\-rng $\ast$rgen)
+\item 
+double \hyperlink{egs__cycle__dynamics_8hpp_a4cbe048474a8059b8e1c4654d3c33dfc}{react\-\_\-v2} (double $\ast$$\ast$u, double $\ast$$\ast$v1, double $\ast$$\ast$v2, double $\ast$$\ast$v3, int i, int j, float hsq, int M, int N, float r\mbox{[}$\,$\mbox{]}\mbox{[}3\mbox{]}, float F, float k2, float Dc, float cell\-\_\-cap\-\_\-1\-D, float noise\-\_\-stddev, float noise\-\_\-level, gsl\-\_\-rng $\ast$rgen)
+\item 
+double \hyperlink{egs__cycle__dynamics_8hpp_a67e28a17492bee41b5196fc6c22b5554}{react\-\_\-v3} (double $\ast$$\ast$u, double $\ast$$\ast$v1, double $\ast$$\ast$v2, double $\ast$$\ast$v3, int i, int j, float hsq, int M, int N, float r\mbox{[}$\,$\mbox{]}\mbox{[}3\mbox{]}, float F, float k3, float Dc, float cell\-\_\-cap\-\_\-1\-D, float noise\-\_\-stddev, float noise\-\_\-level, gsl\-\_\-rng $\ast$rgen)
+\item 
+int \hyperlink{egs__cycle__dynamics_8hpp_a7b277144168aa4aff902cda086eb1715}{load\-\_\-initial\-\_\-conditions} (char $\ast$cond\-\_\-file, double $\ast$$\ast$u, double $\ast$$\ast$v1, double $\ast$$\ast$v2, double $\ast$$\ast$v3, int nrows, int ncols, bool initial\-\_\-randomization, float cell\-\_\-cap\-\_\-1\-D, float noise\-\_\-stddev, float noise\-\_\-level, gsl\-\_\-rng $\ast$rgen)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Dynamics for the 3-\/component hypercyle extension of the Gray-\/\-Scott model (reaction-\/diffusion equations) \begin{DoxyVerb}U + 2 V1  -r[0][0]->  3V1
+U + 2 V2  -r[1][1]->  3V2
+U + 2 V3  -r[2][2]->  3V3
+
+U + V1 + V2 -r21-> 2V1 + V2
+U + V1 + V2 -r12-> 2V2 + V1
+
+U + V1 + V3 -r31-> 2V1 + V3
+U + V1 + V3 -r13-> 2V3 + V1
+
+U + V2 + V3 -r32-> 2V2 + V3
+U + V2 + V3 -r23-> 2V3 + V2
+
+V1 -k1-> P
+V2 -k2-> P
+V3 -k3-> P
+\end{DoxyVerb}
+
+
+There are two separate versions of the reaction-\/diffusion functions, with and witout noise, respectively, as an optimisation. Uses 5-\/point stencil Laplacian discretisation (for speed)
+
+While technically a concentration operator, the initial conditions loading procedure was included here so that this file would describe the initial value problem. 
+
+Definition in file \hyperlink{egs__cycle__dynamics_8hpp_source}{egs\-\_\-cycle\-\_\-dynamics.\-hpp}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{egs__cycle__dynamics_8hpp_a7b277144168aa4aff902cda086eb1715}{\index{egs\-\_\-cycle\-\_\-dynamics.\-hpp@{egs\-\_\-cycle\-\_\-dynamics.\-hpp}!load\-\_\-initial\-\_\-conditions@{load\-\_\-initial\-\_\-conditions}}
+\index{load\-\_\-initial\-\_\-conditions@{load\-\_\-initial\-\_\-conditions}!egs_cycle_dynamics.hpp@{egs\-\_\-cycle\-\_\-dynamics.\-hpp}}
+\subsubsection[{load\-\_\-initial\-\_\-conditions}]{\setlength{\rightskip}{0pt plus 5cm}int load\-\_\-initial\-\_\-conditions (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{cond\-\_\-file, }
+\item[{double $\ast$$\ast$}]{u, }
+\item[{double $\ast$$\ast$}]{v1, }
+\item[{double $\ast$$\ast$}]{v2, }
+\item[{double $\ast$$\ast$}]{v3, }
+\item[{int}]{nrows, }
+\item[{int}]{ncols, }
+\item[{bool}]{initial\-\_\-randomization, }
+\item[{float}]{cell\-\_\-cap\-\_\-1\-D, }
+\item[{float}]{noise\-\_\-stddev, }
+\item[{float}]{noise\-\_\-level, }
+\item[{gsl\-\_\-rng $\ast$}]{rgen}
+\end{DoxyParamCaption}
+)}}\label{egs__cycle__dynamics_8hpp_a7b277144168aa4aff902cda086eb1715}
+Loads initial conditions or fail with a non-\/null return value.
+
+Notes\-:
+\begin{DoxyEnumerate}
+\item Replaces all previous data.
+\item Any unkown catalyst type numbers ($>$=4) are ignored.
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em cond\-\_\-file} & The file describing the inital conditions \\
+\hline
+\mbox{\tt in}  & {\em u,v1,v2,v3} & Concentration matrices \\
+\hline
+\mbox{\tt in}  & {\em nrows,ncols} & Size of matrices \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 = success, 1 = failure to open file 
+\end{DoxyReturn}
+
+
+Definition at line 348 of file egs\-\_\-cycle\-\_\-dynamics.\-hpp.
+
+\hypertarget{egs__cycle__dynamics_8hpp_abd448c8c58efd4c28868a38511ee37d9}{\index{egs\-\_\-cycle\-\_\-dynamics.\-hpp@{egs\-\_\-cycle\-\_\-dynamics.\-hpp}!react\-\_\-u@{react\-\_\-u}}
+\index{react\-\_\-u@{react\-\_\-u}!egs_cycle_dynamics.hpp@{egs\-\_\-cycle\-\_\-dynamics.\-hpp}}
+\subsubsection[{react\-\_\-u}]{\setlength{\rightskip}{0pt plus 5cm}double react\-\_\-u (
+\begin{DoxyParamCaption}
+\item[{double $\ast$$\ast$}]{u, }
+\item[{double $\ast$$\ast$}]{v1, }
+\item[{double $\ast$$\ast$}]{v2, }
+\item[{double $\ast$$\ast$}]{v3, }
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{float}]{hsq, }
+\item[{int}]{M, }
+\item[{int}]{N, }
+\item[{float}]{r\mbox{[}$\,$\mbox{]}\mbox{[}3\mbox{]}, }
+\item[{float}]{F, }
+\item[{float}]{Du}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{egs__cycle__dynamics_8hpp_abd448c8c58efd4c28868a38511ee37d9}
+Computes the change in U (deterministic version)
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em u,v1,v2,v3} & Concentration matries \\
+\hline
+\mbox{\tt in}  & {\em i,j} & Position in grid \\
+\hline
+\mbox{\tt in}  & {\em hsq} & Spatial discretisation step squared $ h^2 = {\Delta x}^2 = \frac{L}{N}^2 $ used by the Laplacian \\
+\hline
+\mbox{\tt in}  & {\em M,N} & Size (height = rows, length = columns) of the grid \\
+\hline
+\mbox{\tt in}  & {\em r} & Reaction rates matrix \\
+\hline
+\mbox{\tt in}  & {\em F} & Fuel feed rates \\
+\hline
+\mbox{\tt in}  & {\em Du} & Diffusion coefficient of U \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 69 of file egs\-\_\-cycle\-\_\-dynamics.\-hpp.
+
+\hypertarget{egs__cycle__dynamics_8hpp_abcbeddb6002bb70c550fb3c0fcdb90b6}{\index{egs\-\_\-cycle\-\_\-dynamics.\-hpp@{egs\-\_\-cycle\-\_\-dynamics.\-hpp}!react\-\_\-u@{react\-\_\-u}}
+\index{react\-\_\-u@{react\-\_\-u}!egs_cycle_dynamics.hpp@{egs\-\_\-cycle\-\_\-dynamics.\-hpp}}
+\subsubsection[{react\-\_\-u}]{\setlength{\rightskip}{0pt plus 5cm}double react\-\_\-u (
+\begin{DoxyParamCaption}
+\item[{double $\ast$$\ast$}]{u, }
+\item[{double $\ast$$\ast$}]{v1, }
+\item[{double $\ast$$\ast$}]{v2, }
+\item[{double $\ast$$\ast$}]{v3, }
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{float}]{hsq, }
+\item[{int}]{M, }
+\item[{int}]{N, }
+\item[{float}]{r\mbox{[}$\,$\mbox{]}\mbox{[}3\mbox{]}, }
+\item[{float}]{F, }
+\item[{float}]{Du, }
+\item[{float}]{cell\-\_\-cap\-\_\-1\-D, }
+\item[{float}]{noise\-\_\-stddev, }
+\item[{float}]{noise\-\_\-level, }
+\item[{gsl\-\_\-rng $\ast$}]{rgen}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{egs__cycle__dynamics_8hpp_abcbeddb6002bb70c550fb3c0fcdb90b6}
+Computes the change in U (stochasti version)
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em u,v1,v2,v3} & Concentration matries \\
+\hline
+\mbox{\tt in}  & {\em i,j} & Position in grid \\
+\hline
+\mbox{\tt in}  & {\em hsq} & Spatial discretisation step squared $ h^2 = {\Delta x}^2 = \frac{L}{N}^2 $ used by the Laplacian \\
+\hline
+\mbox{\tt in}  & {\em M,N} & Size (height = rows, length = columns) of the grid \\
+\hline
+\mbox{\tt in}  & {\em r} & Reaction rates matrix \\
+\hline
+\mbox{\tt in}  & {\em F} & Fuel feed rates \\
+\hline
+\mbox{\tt in}  & {\em Du} & Diffusion coefficient of U \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 203 of file egs\-\_\-cycle\-\_\-dynamics.\-hpp.
+
+\hypertarget{egs__cycle__dynamics_8hpp_a49b8c0678c4f4013f4bc399c3522740d}{\index{egs\-\_\-cycle\-\_\-dynamics.\-hpp@{egs\-\_\-cycle\-\_\-dynamics.\-hpp}!react\-\_\-v1@{react\-\_\-v1}}
+\index{react\-\_\-v1@{react\-\_\-v1}!egs_cycle_dynamics.hpp@{egs\-\_\-cycle\-\_\-dynamics.\-hpp}}
+\subsubsection[{react\-\_\-v1}]{\setlength{\rightskip}{0pt plus 5cm}double react\-\_\-v1 (
+\begin{DoxyParamCaption}
+\item[{double $\ast$$\ast$}]{u, }
+\item[{double $\ast$$\ast$}]{v1, }
+\item[{double $\ast$$\ast$}]{v2, }
+\item[{double $\ast$$\ast$}]{v3, }
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{float}]{hsq, }
+\item[{int}]{M, }
+\item[{int}]{N, }
+\item[{float}]{r\mbox{[}$\,$\mbox{]}\mbox{[}3\mbox{]}, }
+\item[{float}]{F, }
+\item[{float}]{k1, }
+\item[{float}]{Dc}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{egs__cycle__dynamics_8hpp_a49b8c0678c4f4013f4bc399c3522740d}
+Computes the change in V1 (deterministic version)
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em u,v1,v2,v3} & Concentration matries \\
+\hline
+\mbox{\tt in}  & {\em i,j} & Position in grid \\
+\hline
+\mbox{\tt in}  & {\em hsq} & Spatial discretisation step squared $ h^2 = {\Delta x}^2 = \frac{L}{N}^2 $ used by the Laplacian \\
+\hline
+\mbox{\tt in}  & {\em M,N} & Size (height = rows, length = columns) of the grid \\
+\hline
+\mbox{\tt in}  & {\em r} & Reaction rates matrix \\
+\hline
+\mbox{\tt in}  & {\em F} & Fuel feed rates \\
+\hline
+\mbox{\tt in}  & {\em k1} & V1 degradation rate \\
+\hline
+\mbox{\tt in}  & {\em Dc} & Diffusion coefficient of V1 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 104 of file egs\-\_\-cycle\-\_\-dynamics.\-hpp.
+
+\hypertarget{egs__cycle__dynamics_8hpp_acfcdb431c4bcf00530805e53391c1145}{\index{egs\-\_\-cycle\-\_\-dynamics.\-hpp@{egs\-\_\-cycle\-\_\-dynamics.\-hpp}!react\-\_\-v1@{react\-\_\-v1}}
+\index{react\-\_\-v1@{react\-\_\-v1}!egs_cycle_dynamics.hpp@{egs\-\_\-cycle\-\_\-dynamics.\-hpp}}
+\subsubsection[{react\-\_\-v1}]{\setlength{\rightskip}{0pt plus 5cm}double react\-\_\-v1 (
+\begin{DoxyParamCaption}
+\item[{double $\ast$$\ast$}]{u, }
+\item[{double $\ast$$\ast$}]{v1, }
+\item[{double $\ast$$\ast$}]{v2, }
+\item[{double $\ast$$\ast$}]{v3, }
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{float}]{hsq, }
+\item[{int}]{M, }
+\item[{int}]{N, }
+\item[{float}]{r\mbox{[}$\,$\mbox{]}\mbox{[}3\mbox{]}, }
+\item[{float}]{F, }
+\item[{float}]{k1, }
+\item[{float}]{Dc, }
+\item[{float}]{cell\-\_\-cap\-\_\-1\-D, }
+\item[{float}]{noise\-\_\-stddev, }
+\item[{float}]{noise\-\_\-level, }
+\item[{gsl\-\_\-rng $\ast$}]{rgen}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{egs__cycle__dynamics_8hpp_acfcdb431c4bcf00530805e53391c1145}
+Computes the change in V1 (stochastic version)
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em u,v1,v2,v3} & Concentration matries \\
+\hline
+\mbox{\tt in}  & {\em i,j} & Position in grid \\
+\hline
+\mbox{\tt in}  & {\em hsq} & Spatial discretisation step squared $ h^2 = {\Delta x}^2 = \frac{L}{N}^2 $ used by the Laplacian \\
+\hline
+\mbox{\tt in}  & {\em M,N} & Size (height = rows, length = columns) of the grid \\
+\hline
+\mbox{\tt in}  & {\em r} & Reaction rates matrix \\
+\hline
+\mbox{\tt in}  & {\em F} & Fuel feed rates \\
+\hline
+\mbox{\tt in}  & {\em k1} & V1 degradation rate \\
+\hline
+\mbox{\tt in}  & {\em Dc} & Diffusion coefficient of V1 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 242 of file egs\-\_\-cycle\-\_\-dynamics.\-hpp.
+
+\hypertarget{egs__cycle__dynamics_8hpp_ac640fc387d927e346322728d5674ffd9}{\index{egs\-\_\-cycle\-\_\-dynamics.\-hpp@{egs\-\_\-cycle\-\_\-dynamics.\-hpp}!react\-\_\-v2@{react\-\_\-v2}}
+\index{react\-\_\-v2@{react\-\_\-v2}!egs_cycle_dynamics.hpp@{egs\-\_\-cycle\-\_\-dynamics.\-hpp}}
+\subsubsection[{react\-\_\-v2}]{\setlength{\rightskip}{0pt plus 5cm}double react\-\_\-v2 (
+\begin{DoxyParamCaption}
+\item[{double $\ast$$\ast$}]{u, }
+\item[{double $\ast$$\ast$}]{v1, }
+\item[{double $\ast$$\ast$}]{v2, }
+\item[{double $\ast$$\ast$}]{v3, }
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{float}]{hsq, }
+\item[{int}]{M, }
+\item[{int}]{N, }
+\item[{float}]{r\mbox{[}$\,$\mbox{]}\mbox{[}3\mbox{]}, }
+\item[{float}]{F, }
+\item[{float}]{k2, }
+\item[{float}]{Dc}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{egs__cycle__dynamics_8hpp_ac640fc387d927e346322728d5674ffd9}
+Computes the change in V2 (deterministic version)
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em u,v1,v2,v3} & Concentration matries \\
+\hline
+\mbox{\tt in}  & {\em i,j} & Position in grid \\
+\hline
+\mbox{\tt in}  & {\em hsq} & Spatial discretisation step squared $ h^2 = {\Delta x}^2 = \frac{L}{N}^2 $ used by the Laplacian \\
+\hline
+\mbox{\tt in}  & {\em M,N} & Size (height = rows, length = columns) of the grid \\
+\hline
+\mbox{\tt in}  & {\em r} & Reaction rates matrix \\
+\hline
+\mbox{\tt in}  & {\em F} & Fuel feed rates \\
+\hline
+\mbox{\tt in}  & {\em k2} & V1 degradation rate \\
+\hline
+\mbox{\tt in}  & {\em Dc} & Diffusion coefficient of V2 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 135 of file egs\-\_\-cycle\-\_\-dynamics.\-hpp.
+
+\hypertarget{egs__cycle__dynamics_8hpp_a4cbe048474a8059b8e1c4654d3c33dfc}{\index{egs\-\_\-cycle\-\_\-dynamics.\-hpp@{egs\-\_\-cycle\-\_\-dynamics.\-hpp}!react\-\_\-v2@{react\-\_\-v2}}
+\index{react\-\_\-v2@{react\-\_\-v2}!egs_cycle_dynamics.hpp@{egs\-\_\-cycle\-\_\-dynamics.\-hpp}}
+\subsubsection[{react\-\_\-v2}]{\setlength{\rightskip}{0pt plus 5cm}double react\-\_\-v2 (
+\begin{DoxyParamCaption}
+\item[{double $\ast$$\ast$}]{u, }
+\item[{double $\ast$$\ast$}]{v1, }
+\item[{double $\ast$$\ast$}]{v2, }
+\item[{double $\ast$$\ast$}]{v3, }
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{float}]{hsq, }
+\item[{int}]{M, }
+\item[{int}]{N, }
+\item[{float}]{r\mbox{[}$\,$\mbox{]}\mbox{[}3\mbox{]}, }
+\item[{float}]{F, }
+\item[{float}]{k2, }
+\item[{float}]{Dc, }
+\item[{float}]{cell\-\_\-cap\-\_\-1\-D, }
+\item[{float}]{noise\-\_\-stddev, }
+\item[{float}]{noise\-\_\-level, }
+\item[{gsl\-\_\-rng $\ast$}]{rgen}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{egs__cycle__dynamics_8hpp_a4cbe048474a8059b8e1c4654d3c33dfc}
+Computes the change in V2 (stochastic version)
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em u,v1,v2,v3} & Concentration matries \\
+\hline
+\mbox{\tt in}  & {\em i,j} & Position in grid \\
+\hline
+\mbox{\tt in}  & {\em hsq} & Spatial discretisation step squared $ h^2 = {\Delta x}^2 = \frac{L}{N}^2 $ used by the Laplacian \\
+\hline
+\mbox{\tt in}  & {\em M,N} & Size (height = rows, length = columns) of the grid \\
+\hline
+\mbox{\tt in}  & {\em r} & Reaction rates matrix \\
+\hline
+\mbox{\tt in}  & {\em F} & Fuel feed rates \\
+\hline
+\mbox{\tt in}  & {\em k2} & V1 degradation rate \\
+\hline
+\mbox{\tt in}  & {\em Dc} & Diffusion coefficient of V2 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 277 of file egs\-\_\-cycle\-\_\-dynamics.\-hpp.
+
+\hypertarget{egs__cycle__dynamics_8hpp_ac20d3e10d8e19856233d68e5b311a1d4}{\index{egs\-\_\-cycle\-\_\-dynamics.\-hpp@{egs\-\_\-cycle\-\_\-dynamics.\-hpp}!react\-\_\-v3@{react\-\_\-v3}}
+\index{react\-\_\-v3@{react\-\_\-v3}!egs_cycle_dynamics.hpp@{egs\-\_\-cycle\-\_\-dynamics.\-hpp}}
+\subsubsection[{react\-\_\-v3}]{\setlength{\rightskip}{0pt plus 5cm}double react\-\_\-v3 (
+\begin{DoxyParamCaption}
+\item[{double $\ast$$\ast$}]{u, }
+\item[{double $\ast$$\ast$}]{v1, }
+\item[{double $\ast$$\ast$}]{v2, }
+\item[{double $\ast$$\ast$}]{v3, }
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{float}]{hsq, }
+\item[{int}]{M, }
+\item[{int}]{N, }
+\item[{float}]{r\mbox{[}$\,$\mbox{]}\mbox{[}3\mbox{]}, }
+\item[{float}]{F, }
+\item[{float}]{k3, }
+\item[{float}]{Dc}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{egs__cycle__dynamics_8hpp_ac20d3e10d8e19856233d68e5b311a1d4}
+Computes the change in V3 (deterministic version)
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em u,v1,v2,v3} & Concentration matries \\
+\hline
+\mbox{\tt in}  & {\em i,j} & Position in grid \\
+\hline
+\mbox{\tt in}  & {\em hsq} & Spatial discretisation step squared $ h^2 = {\Delta x}^2 = \frac{L}{N}^2 $ used by the Laplacian \\
+\hline
+\mbox{\tt in}  & {\em M,N} & Size (height = rows, length = columns) of the grid \\
+\hline
+\mbox{\tt in}  & {\em r} & Reaction rates matrix \\
+\hline
+\mbox{\tt in}  & {\em F} & Fuel feed rates \\
+\hline
+\mbox{\tt in}  & {\em k3} & V1 degradation rate \\
+\hline
+\mbox{\tt in}  & {\em Dc} & Diffusion coefficient of V3 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 166 of file egs\-\_\-cycle\-\_\-dynamics.\-hpp.
+
+\hypertarget{egs__cycle__dynamics_8hpp_a67e28a17492bee41b5196fc6c22b5554}{\index{egs\-\_\-cycle\-\_\-dynamics.\-hpp@{egs\-\_\-cycle\-\_\-dynamics.\-hpp}!react\-\_\-v3@{react\-\_\-v3}}
+\index{react\-\_\-v3@{react\-\_\-v3}!egs_cycle_dynamics.hpp@{egs\-\_\-cycle\-\_\-dynamics.\-hpp}}
+\subsubsection[{react\-\_\-v3}]{\setlength{\rightskip}{0pt plus 5cm}double react\-\_\-v3 (
+\begin{DoxyParamCaption}
+\item[{double $\ast$$\ast$}]{u, }
+\item[{double $\ast$$\ast$}]{v1, }
+\item[{double $\ast$$\ast$}]{v2, }
+\item[{double $\ast$$\ast$}]{v3, }
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{float}]{hsq, }
+\item[{int}]{M, }
+\item[{int}]{N, }
+\item[{float}]{r\mbox{[}$\,$\mbox{]}\mbox{[}3\mbox{]}, }
+\item[{float}]{F, }
+\item[{float}]{k3, }
+\item[{float}]{Dc, }
+\item[{float}]{cell\-\_\-cap\-\_\-1\-D, }
+\item[{float}]{noise\-\_\-stddev, }
+\item[{float}]{noise\-\_\-level, }
+\item[{gsl\-\_\-rng $\ast$}]{rgen}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{egs__cycle__dynamics_8hpp_a67e28a17492bee41b5196fc6c22b5554}
+Computes the change in V3 (stochastic version)
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em u,v1,v2,v3} & Concentration matries \\
+\hline
+\mbox{\tt in}  & {\em i,j} & Position in grid \\
+\hline
+\mbox{\tt in}  & {\em hsq} & Spatial discretisation step squared $ h^2 = {\Delta x}^2 = \frac{L}{N}^2 $ used by the Laplacian \\
+\hline
+\mbox{\tt in}  & {\em M,N} & Size (height = rows, length = columns) of the grid \\
+\hline
+\mbox{\tt in}  & {\em r} & Reaction rates matrix \\
+\hline
+\mbox{\tt in}  & {\em F} & Fuel feed rates \\
+\hline
+\mbox{\tt in}  & {\em k3} & V1 degradation rate \\
+\hline
+\mbox{\tt in}  & {\em Dc} & Diffusion coefficient of V3 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 313 of file egs\-\_\-cycle\-\_\-dynamics.\-hpp.
+

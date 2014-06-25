@@ -1,0 +1,222 @@
+\hypertarget{classdatafile}{\section{datafile Class Reference}
+\label{classdatafile}\index{datafile@{datafile}}
+}
+
+
+{\ttfamily \#include \char`\"{}system.\-hpp\char`\"{}}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classdatafile_a16a2cd8a77f1faa65cfc4ff135f917c7}{datafile} (const char $\ast$filename, double $\ast$$\ast$datamatrix, int rows, int cols, bool append)
+\item 
+\hyperlink{classdatafile_aeaa064104b437b95d273dd699df2effb}{datafile} (const char $\ast$filename, const char $\ast$fallback\-\_\-name, double $\ast$$\ast$datamatrix, int rows, int cols, bool append)
+\begin{DoxyCompactList}\small\item\em specifies a fallback filename to use in case the first location is not writeable \end{DoxyCompactList}\item 
+\hyperlink{classdatafile_aedef6642e02a913ec9f38c359cdac4be}{$\sim$datafile} ()
+\item 
+void \hyperlink{classdatafile_a10e7dcf1beebe4f13b70aa4fd1ee421b}{dump\-\_\-final} ()
+\begin{DoxyCompactList}\small\item\em Save matrix to .final file -\/ meant to save last system state. \end{DoxyCompactList}\item 
+void \hyperlink{classdatafile_a0031c4995e788411b2434e6fbb8c7a67}{dump} ()
+\item 
+bool \hyperlink{classdatafile_aa112d6d47cd923d434c2e6efed9711e8}{isopen} ()
+\item 
+std\-::string \hyperlink{classdatafile_aa55618f25a485aeadf64accf91b21ca7}{get\-\_\-path} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classdatafile_a0fecbbbf4ce07110cec5dec600c61d28}{datafile} (const \hyperlink{classdatafile}{datafile} \&that)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+F\-I\-L\-E $\ast$ \hyperlink{classdatafile_ae70cc0653ae8f036afaf64f30d9c88e7}{file}
+\item 
+F\-I\-L\-E $\ast$ \hyperlink{classdatafile_a45a1c9f31429aa1d8b54a02722095a1a}{endfile}
+\begin{DoxyCompactList}\small\item\em will keep the last system state for easy resuming \end{DoxyCompactList}\item 
+int \hyperlink{classdatafile_a7e9acc3d0f772c18910a6d86741ef4f5}{nrows}
+\item 
+int \hyperlink{classdatafile_a530295db9ac71c1417f1451ee3dcbf35}{ncols}
+\begin{DoxyCompactList}\small\item\em size of the matrix \end{DoxyCompactList}\item 
+double $\ast$$\ast$ \hyperlink{classdatafile_aa193a7b714962d635d40d1ed0b4daeee}{data}
+\item 
+std\-::string \hyperlink{classdatafile_af336f792f53618ff6d5f0dbe3d05e755}{filepath}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class encapsulates a stdio F\-I\-L\-E (not std\-::fstream for less overhead), along with associated operations, for easier use in main program.
+
+Notes\-:
+\begin{DoxyEnumerate}
+\item no copies are permitted (copy constructor disabled) since this is meant as one data source per file.
+\item the output file is opened for writing, i.\-e. the file is replaced. T\-O\-D\-O\-: implement resume function 
+\end{DoxyEnumerate}
+
+Definition at line 102 of file system.\-hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classdatafile_a0fecbbbf4ce07110cec5dec600c61d28}{\index{datafile@{datafile}!datafile@{datafile}}
+\index{datafile@{datafile}!datafile@{datafile}}
+\subsubsection[{datafile}]{\setlength{\rightskip}{0pt plus 5cm}datafile\-::datafile (
+\begin{DoxyParamCaption}
+\item[{const {\bf datafile} \&}]{that}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classdatafile_a0fecbbbf4ce07110cec5dec600c61d28}
+\hypertarget{classdatafile_a16a2cd8a77f1faa65cfc4ff135f917c7}{\index{datafile@{datafile}!datafile@{datafile}}
+\index{datafile@{datafile}!datafile@{datafile}}
+\subsubsection[{datafile}]{\setlength{\rightskip}{0pt plus 5cm}datafile\-::datafile (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{filename, }
+\item[{double $\ast$$\ast$}]{datamatrix, }
+\item[{int}]{rows, }
+\item[{int}]{cols, }
+\item[{bool}]{append}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classdatafile_a16a2cd8a77f1faa65cfc4ff135f917c7}
+
+
+Definition at line 116 of file system.\-hpp.
+
+\hypertarget{classdatafile_aeaa064104b437b95d273dd699df2effb}{\index{datafile@{datafile}!datafile@{datafile}}
+\index{datafile@{datafile}!datafile@{datafile}}
+\subsubsection[{datafile}]{\setlength{\rightskip}{0pt plus 5cm}datafile\-::datafile (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{filename, }
+\item[{const char $\ast$}]{fallback\-\_\-name, }
+\item[{double $\ast$$\ast$}]{datamatrix, }
+\item[{int}]{rows, }
+\item[{int}]{cols, }
+\item[{bool}]{append}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classdatafile_aeaa064104b437b95d273dd699df2effb}
+
+
+specifies a fallback filename to use in case the first location is not writeable 
+
+
+
+Definition at line 137 of file system.\-hpp.
+
+\hypertarget{classdatafile_aedef6642e02a913ec9f38c359cdac4be}{\index{datafile@{datafile}!$\sim$datafile@{$\sim$datafile}}
+\index{$\sim$datafile@{$\sim$datafile}!datafile@{datafile}}
+\subsubsection[{$\sim$datafile}]{\setlength{\rightskip}{0pt plus 5cm}datafile\-::$\sim$datafile (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classdatafile_aedef6642e02a913ec9f38c359cdac4be}
+
+
+Definition at line 165 of file system.\-hpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classdatafile_a0031c4995e788411b2434e6fbb8c7a67}{\index{datafile@{datafile}!dump@{dump}}
+\index{dump@{dump}!datafile@{datafile}}
+\subsubsection[{dump}]{\setlength{\rightskip}{0pt plus 5cm}void datafile\-::dump (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classdatafile_a0031c4995e788411b2434e6fbb8c7a67}
+
+
+Definition at line 176 of file system.\-hpp.
+
+\hypertarget{classdatafile_a10e7dcf1beebe4f13b70aa4fd1ee421b}{\index{datafile@{datafile}!dump\-\_\-final@{dump\-\_\-final}}
+\index{dump\-\_\-final@{dump\-\_\-final}!datafile@{datafile}}
+\subsubsection[{dump\-\_\-final}]{\setlength{\rightskip}{0pt plus 5cm}void datafile\-::dump\-\_\-final (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classdatafile_a10e7dcf1beebe4f13b70aa4fd1ee421b}
+
+
+Save matrix to .final file -\/ meant to save last system state. 
+
+
+
+Definition at line 171 of file system.\-hpp.
+
+\hypertarget{classdatafile_aa55618f25a485aeadf64accf91b21ca7}{\index{datafile@{datafile}!get\-\_\-path@{get\-\_\-path}}
+\index{get\-\_\-path@{get\-\_\-path}!datafile@{datafile}}
+\subsubsection[{get\-\_\-path}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string datafile\-::get\-\_\-path (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classdatafile_aa55618f25a485aeadf64accf91b21ca7}
+
+
+Definition at line 185 of file system.\-hpp.
+
+\hypertarget{classdatafile_aa112d6d47cd923d434c2e6efed9711e8}{\index{datafile@{datafile}!isopen@{isopen}}
+\index{isopen@{isopen}!datafile@{datafile}}
+\subsubsection[{isopen}]{\setlength{\rightskip}{0pt plus 5cm}bool datafile\-::isopen (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classdatafile_aa112d6d47cd923d434c2e6efed9711e8}
+
+
+Definition at line 182 of file system.\-hpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classdatafile_aa193a7b714962d635d40d1ed0b4daeee}{\index{datafile@{datafile}!data@{data}}
+\index{data@{data}!datafile@{datafile}}
+\subsubsection[{data}]{\setlength{\rightskip}{0pt plus 5cm}double$\ast$$\ast$ datafile\-::data\hspace{0.3cm}{\ttfamily [private]}}}\label{classdatafile_aa193a7b714962d635d40d1ed0b4daeee}
+
+
+Definition at line 109 of file system.\-hpp.
+
+\hypertarget{classdatafile_a45a1c9f31429aa1d8b54a02722095a1a}{\index{datafile@{datafile}!endfile@{endfile}}
+\index{endfile@{endfile}!datafile@{datafile}}
+\subsubsection[{endfile}]{\setlength{\rightskip}{0pt plus 5cm}F\-I\-L\-E$\ast$ datafile\-::endfile\hspace{0.3cm}{\ttfamily [private]}}}\label{classdatafile_a45a1c9f31429aa1d8b54a02722095a1a}
+
+
+will keep the last system state for easy resuming 
+
+
+
+Definition at line 106 of file system.\-hpp.
+
+\hypertarget{classdatafile_ae70cc0653ae8f036afaf64f30d9c88e7}{\index{datafile@{datafile}!file@{file}}
+\index{file@{file}!datafile@{datafile}}
+\subsubsection[{file}]{\setlength{\rightskip}{0pt plus 5cm}F\-I\-L\-E$\ast$ datafile\-::file\hspace{0.3cm}{\ttfamily [private]}}}\label{classdatafile_ae70cc0653ae8f036afaf64f30d9c88e7}
+
+
+Definition at line 105 of file system.\-hpp.
+
+\hypertarget{classdatafile_af336f792f53618ff6d5f0dbe3d05e755}{\index{datafile@{datafile}!filepath@{filepath}}
+\index{filepath@{filepath}!datafile@{datafile}}
+\subsubsection[{filepath}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string datafile\-::filepath\hspace{0.3cm}{\ttfamily [private]}}}\label{classdatafile_af336f792f53618ff6d5f0dbe3d05e755}
+
+
+Definition at line 110 of file system.\-hpp.
+
+\hypertarget{classdatafile_a530295db9ac71c1417f1451ee3dcbf35}{\index{datafile@{datafile}!ncols@{ncols}}
+\index{ncols@{ncols}!datafile@{datafile}}
+\subsubsection[{ncols}]{\setlength{\rightskip}{0pt plus 5cm}int datafile\-::ncols\hspace{0.3cm}{\ttfamily [private]}}}\label{classdatafile_a530295db9ac71c1417f1451ee3dcbf35}
+
+
+size of the matrix 
+
+
+
+Definition at line 108 of file system.\-hpp.
+
+\hypertarget{classdatafile_a7e9acc3d0f772c18910a6d86741ef4f5}{\index{datafile@{datafile}!nrows@{nrows}}
+\index{nrows@{nrows}!datafile@{datafile}}
+\subsubsection[{nrows}]{\setlength{\rightskip}{0pt plus 5cm}int datafile\-::nrows\hspace{0.3cm}{\ttfamily [private]}}}\label{classdatafile_a7e9acc3d0f772c18910a6d86741ef4f5}
+
+
+Definition at line 108 of file system.\-hpp.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{system_8hpp}{system.\-hpp}\end{DoxyCompactItemize}

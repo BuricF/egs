@@ -1,0 +1,43 @@
+# This file describes initial conditions
+# i.e. areas with given conentrations for each chemical species.
+# N.B. Must be used in conjuction with specific model.
+# It's not an universal specification, because of reasons.
+
+# Format:
+# Species Concentration
+# lower left corner
+# upper right corner
+
+# primer 1
+F 0.5
+10 10
+30 30
+
+C 1 0.25
+10 10
+30 30
+
+C 2 0.25
+10 10
+30 30
+
+C 3 0.25
+10 10
+30 30
+
+# primer 2
+F 0.5
+100 100
+120 120
+
+C 1 0.25
+100 100
+120 120
+
+C 2 0.25
+100 100
+120 120
+
+C 3 0.25
+100 100
+120 120

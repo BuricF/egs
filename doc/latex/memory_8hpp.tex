@@ -1,0 +1,106 @@
+\hypertarget{memory_8hpp}{\section{include/memory.hpp File Reference}
+\label{memory_8hpp}\index{include/memory.\-hpp@{include/memory.\-hpp}}
+}
+{\ttfamily \#include $<$cstdlib$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Numeric\-Type $>$ }\\int \hyperlink{memory_8hpp_a4d285818b133c7a4fb2219ff208f759b}{gridalloc} (Numeric\-Type $\ast$$\ast$$\ast$a, int nrows, int ncols)  throw (int)
+\item 
+{\footnotesize template$<$typename Numeric\-Type $>$ }\\void \hyperlink{memory_8hpp_abb9a87fee608cbc6dac021e64c4ccc17}{gridfree} (Numeric\-Type $\ast$$\ast$$\ast$a, int nrows)
+\item 
+void \hyperlink{memory_8hpp_a76a41510f53e162580da78187fefd45c}{swap\-\_\-mat} (double $\ast$$\ast$$\ast$u, double $\ast$$\ast$$\ast$v)
+\item 
+int \hyperlink{memory_8hpp_a3ae7f2adf601dad69c0cd6ea7a6c5b7e}{matalloc} (double $\ast$$\ast$$\ast$a, int N)
+\item 
+void \hyperlink{memory_8hpp_a23f23f6e3bb8525a1d80d26d8a681266}{matfree} (double $\ast$$\ast$$\ast$a, int N)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This header contains memory management (allocation/freein) functions. Ugly mix of C/\-C++ because raw data structures were thought to have less overhead, and because earlier on, some pure C mathematical libraries were used. 
+
+Definition in file \hyperlink{memory_8hpp_source}{memory.\-hpp}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{memory_8hpp_a4d285818b133c7a4fb2219ff208f759b}{\index{memory.\-hpp@{memory.\-hpp}!gridalloc@{gridalloc}}
+\index{gridalloc@{gridalloc}!memory.hpp@{memory.\-hpp}}
+\subsubsection[{gridalloc}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Numeric\-Type $>$ int gridalloc (
+\begin{DoxyParamCaption}
+\item[{Numeric\-Type $\ast$$\ast$$\ast$}]{a, }
+\item[{int}]{nrows, }
+\item[{int}]{ncols}
+\end{DoxyParamCaption}
+) throw  int) }}\label{memory_8hpp_a4d285818b133c7a4fb2219ff208f759b}
+Allocates a grid of generic numeric type.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a} & Pointer to Numeric\-Type$\ast$$\ast$ matrix \\
+\hline
+\mbox{\tt in}  & {\em nrows,ncols} & Size of the matrix to allocate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em 1} & on allocation failure \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 42 of file memory.\-hpp.
+
+\hypertarget{memory_8hpp_abb9a87fee608cbc6dac021e64c4ccc17}{\index{memory.\-hpp@{memory.\-hpp}!gridfree@{gridfree}}
+\index{gridfree@{gridfree}!memory.hpp@{memory.\-hpp}}
+\subsubsection[{gridfree}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Numeric\-Type $>$ void gridfree (
+\begin{DoxyParamCaption}
+\item[{Numeric\-Type $\ast$$\ast$$\ast$}]{a, }
+\item[{int}]{nrows}
+\end{DoxyParamCaption}
+)}}\label{memory_8hpp_abb9a87fee608cbc6dac021e64c4ccc17}
+Frees a grid of generic numeric type 
+
+Definition at line 69 of file memory.\-hpp.
+
+\hypertarget{memory_8hpp_a3ae7f2adf601dad69c0cd6ea7a6c5b7e}{\index{memory.\-hpp@{memory.\-hpp}!matalloc@{matalloc}}
+\index{matalloc@{matalloc}!memory.hpp@{memory.\-hpp}}
+\subsubsection[{matalloc}]{\setlength{\rightskip}{0pt plus 5cm}int matalloc (
+\begin{DoxyParamCaption}
+\item[{double $\ast$$\ast$$\ast$}]{a, }
+\item[{int}]{N}
+\end{DoxyParamCaption}
+)}}\label{memory_8hpp_a3ae7f2adf601dad69c0cd6ea7a6c5b7e}
+Allocate a square matrix of side N 
+
+Definition at line 92 of file memory.\-hpp.
+
+\hypertarget{memory_8hpp_a23f23f6e3bb8525a1d80d26d8a681266}{\index{memory.\-hpp@{memory.\-hpp}!matfree@{matfree}}
+\index{matfree@{matfree}!memory.hpp@{memory.\-hpp}}
+\subsubsection[{matfree}]{\setlength{\rightskip}{0pt plus 5cm}void matfree (
+\begin{DoxyParamCaption}
+\item[{double $\ast$$\ast$$\ast$}]{a, }
+\item[{int}]{N}
+\end{DoxyParamCaption}
+)}}\label{memory_8hpp_a23f23f6e3bb8525a1d80d26d8a681266}
+Free square matrix of side N 
+
+Definition at line 110 of file memory.\-hpp.
+
+\hypertarget{memory_8hpp_a76a41510f53e162580da78187fefd45c}{\index{memory.\-hpp@{memory.\-hpp}!swap\-\_\-mat@{swap\-\_\-mat}}
+\index{swap\-\_\-mat@{swap\-\_\-mat}!memory.hpp@{memory.\-hpp}}
+\subsubsection[{swap\-\_\-mat}]{\setlength{\rightskip}{0pt plus 5cm}void swap\-\_\-mat (
+\begin{DoxyParamCaption}
+\item[{double $\ast$$\ast$$\ast$}]{u, }
+\item[{double $\ast$$\ast$$\ast$}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{memory_8hpp_a76a41510f53e162580da78187fefd45c}
+Standard pointer swapping function. After call, the two supplied pointers will reference the other's matrix 
+
+Definition at line 81 of file memory.\-hpp.
+

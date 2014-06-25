@@ -1,0 +1,93 @@
+\hypertarget{egs__cycle_8cpp}{\section{egs\-\_\-cycle.\-cpp File Reference}
+\label{egs__cycle_8cpp}\index{egs\-\_\-cycle.\-cpp@{egs\-\_\-cycle.\-cpp}}
+}
+{\ttfamily \#include $<$cstdio$>$}\\*
+{\ttfamily \#include $<$cstdlib$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$set$>$}\\*
+{\ttfamily \#include $<$ctime$>$}\\*
+{\ttfamily \#include $<$cmath$>$}\\*
+{\ttfamily \#include $<$cfloat$>$}\\*
+{\ttfamily \#include $<$omp.\-h$>$}\\*
+{\ttfamily \#include $<$gsl/gsl\-\_\-rng.\-h$>$}\\*
+{\ttfamily \#include $<$gsl/gsl\-\_\-randist.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}include/operators.\-hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}include/egs\-\_\-cycle\-\_\-dynamics.\-hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}include/system.\-hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}include/memory.\-hpp\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{egs__cycle_8cpp_a710c910ce817e26598bff4f460543a8c}{L\-O\-W\-L\-I\-M}~1.\-0e-\/24
+\item 
+\#define \hyperlink{egs__cycle_8cpp_a2babc58b2297dc982456952b7d29ea34}{sqs12}~(2.\-0$\ast$sqrt(r\mbox{[}0\mbox{]}\mbox{[}0\mbox{]}$\ast$r\mbox{[}1\mbox{]}\mbox{[}1\mbox{]}))
+\item 
+\#define \hyperlink{egs__cycle_8cpp_a20db28a5a5ded6e04e49732509c813d1}{sqs13}~(2.\-0$\ast$sqrt(r\mbox{[}0\mbox{]}\mbox{[}0\mbox{]}$\ast$r\mbox{[}2\mbox{]}\mbox{[}2\mbox{]}))
+\item 
+\#define \hyperlink{egs__cycle_8cpp_a5cca68ca87a6f47c600ac910419f17c1}{sqs23}~(2.\-0$\ast$sqrt(r\mbox{[}1\mbox{]}\mbox{[}1\mbox{]}$\ast$r\mbox{[}2\mbox{]}\mbox{[}2\mbox{]}))
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{egs__cycle_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Extended Gray-\/\-Scott Model Simulator
+
+The system features one 2\-D reaction chamber modelled as a grid with periodic boundaries (torus topology).
+
+The differential equations are integrated using the forward Euler method with the optional half-\/step (midpoint method).
+
+Initial conditions are loaded from a file in the cond/ directory which specifies the concentration and spread of each species present initially (this markup format is described in the .cond files).
+
+If species are to appear through mutation, the convention is that these are to be $V_2$ and $V_3$ ( $V_1$ is always the \char`\"{}original\char`\"{} species).
+
+The system and reaction-\/diffusion paramters are hardcoded since it proved easier to manage when reparameterising and extending the models, or when defining experiment parameters.
+
+Degradation rates $k_i$ and the fuel feed rate F are cosntant across the grid.
+
+The location of the generated simulation data directory is hardcoded at simdata/ Status messages and events are printed to stdout. The format of the concentration matrix evolution data for each species is a .dat file containing the matrix at each generation, separated by an empty line. The numerical values are stored as text, not binary, for human inspection. The first line is the number of rows M (height) of the matrices.
+
+Errors during execution are meant to be loud and terminating so no hidden errors affect the results.
+
+File paths are relative to current working directory, which is set by the controlling script.
+
+As a note on execution speed, the bottleneck was profiled to be the discrete Laplacian operator. 
+
+Definition in file \hyperlink{egs__cycle_8cpp_source}{egs\-\_\-cycle.\-cpp}.
+
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{egs__cycle_8cpp_a710c910ce817e26598bff4f460543a8c}{\index{egs\-\_\-cycle.\-cpp@{egs\-\_\-cycle.\-cpp}!L\-O\-W\-L\-I\-M@{L\-O\-W\-L\-I\-M}}
+\index{L\-O\-W\-L\-I\-M@{L\-O\-W\-L\-I\-M}!egs_cycle.cpp@{egs\-\_\-cycle.\-cpp}}
+\subsubsection[{L\-O\-W\-L\-I\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-O\-W\-L\-I\-M~1.\-0e-\/24}}\label{egs__cycle_8cpp_a710c910ce817e26598bff4f460543a8c}
+
+
+Definition at line 76 of file egs\-\_\-cycle.\-cpp.
+
+\hypertarget{egs__cycle_8cpp_a2babc58b2297dc982456952b7d29ea34}{\index{egs\-\_\-cycle.\-cpp@{egs\-\_\-cycle.\-cpp}!sqs12@{sqs12}}
+\index{sqs12@{sqs12}!egs_cycle.cpp@{egs\-\_\-cycle.\-cpp}}
+\subsubsection[{sqs12}]{\setlength{\rightskip}{0pt plus 5cm}\#define sqs12~(2.\-0$\ast$sqrt(r\mbox{[}0\mbox{]}\mbox{[}0\mbox{]}$\ast$r\mbox{[}1\mbox{]}\mbox{[}1\mbox{]}))}}\label{egs__cycle_8cpp_a2babc58b2297dc982456952b7d29ea34}
+\hypertarget{egs__cycle_8cpp_a20db28a5a5ded6e04e49732509c813d1}{\index{egs\-\_\-cycle.\-cpp@{egs\-\_\-cycle.\-cpp}!sqs13@{sqs13}}
+\index{sqs13@{sqs13}!egs_cycle.cpp@{egs\-\_\-cycle.\-cpp}}
+\subsubsection[{sqs13}]{\setlength{\rightskip}{0pt plus 5cm}\#define sqs13~(2.\-0$\ast$sqrt(r\mbox{[}0\mbox{]}\mbox{[}0\mbox{]}$\ast$r\mbox{[}2\mbox{]}\mbox{[}2\mbox{]}))}}\label{egs__cycle_8cpp_a20db28a5a5ded6e04e49732509c813d1}
+\hypertarget{egs__cycle_8cpp_a5cca68ca87a6f47c600ac910419f17c1}{\index{egs\-\_\-cycle.\-cpp@{egs\-\_\-cycle.\-cpp}!sqs23@{sqs23}}
+\index{sqs23@{sqs23}!egs_cycle.cpp@{egs\-\_\-cycle.\-cpp}}
+\subsubsection[{sqs23}]{\setlength{\rightskip}{0pt plus 5cm}\#define sqs23~(2.\-0$\ast$sqrt(r\mbox{[}1\mbox{]}\mbox{[}1\mbox{]}$\ast$r\mbox{[}2\mbox{]}\mbox{[}2\mbox{]}))}}\label{egs__cycle_8cpp_a5cca68ca87a6f47c600ac910419f17c1}
+
+
+\subsection{Function Documentation}
+\hypertarget{egs__cycle_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{\index{egs\-\_\-cycle.\-cpp@{egs\-\_\-cycle.\-cpp}!main@{main}}
+\index{main@{main}!egs_cycle.cpp@{egs\-\_\-cycle.\-cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{egs__cycle_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}
+
+
+Definition at line 89 of file egs\-\_\-cycle.\-cpp.
+

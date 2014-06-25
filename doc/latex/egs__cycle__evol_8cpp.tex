@@ -1,0 +1,78 @@
+\hypertarget{egs__cycle__evol_8cpp}{\section{egs\-\_\-cycle\-\_\-evol.\-cpp File Reference}
+\label{egs__cycle__evol_8cpp}\index{egs\-\_\-cycle\-\_\-evol.\-cpp@{egs\-\_\-cycle\-\_\-evol.\-cpp}}
+}
+{\ttfamily \#include $<$cstdio$>$}\\*
+{\ttfamily \#include $<$cstdlib$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$ctime$>$}\\*
+{\ttfamily \#include $<$cmath$>$}\\*
+{\ttfamily \#include $<$cfloat$>$}\\*
+{\ttfamily \#include $<$omp.\-h$>$}\\*
+{\ttfamily \#include $<$gsl/gsl\-\_\-rng.\-h$>$}\\*
+{\ttfamily \#include $<$gsl/gsl\-\_\-randist.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}include/operators.\-hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}include/egs\-\_\-cycle\-\_\-dynamics.\-hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}include/system.\-hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}include/memory.\-hpp\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{egs__cycle__evol_8cpp_a710c910ce817e26598bff4f460543a8c}{L\-O\-W\-L\-I\-M}~1.\-0e-\/24
+\item 
+\#define \hyperlink{egs__cycle__evol_8cpp_a2babc58b2297dc982456952b7d29ea34}{sqs12}~(2.\-0$\ast$sqrt(r\mbox{[}0\mbox{]}\mbox{[}0\mbox{]}$\ast$r\mbox{[}1\mbox{]}\mbox{[}1\mbox{]}))
+\item 
+\#define \hyperlink{egs__cycle__evol_8cpp_a20db28a5a5ded6e04e49732509c813d1}{sqs13}~(2.\-0$\ast$sqrt(r\mbox{[}0\mbox{]}\mbox{[}0\mbox{]}$\ast$r\mbox{[}2\mbox{]}\mbox{[}2\mbox{]}))
+\item 
+\#define \hyperlink{egs__cycle__evol_8cpp_a5cca68ca87a6f47c600ac910419f17c1}{sqs23}~(2.\-0$\ast$sqrt(r\mbox{[}1\mbox{]}\mbox{[}1\mbox{]}$\ast$r\mbox{[}2\mbox{]}\mbox{[}2\mbox{]}))
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{egs__cycle__evol_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Extended Gray-\/\-Scott Model Evlution Simulator
+
+This version is built upon the simple simulator, running the dyanmic for a specified length of time.
+
+The simulation features subsequent mutation events until all species go extinct or the alloted times runs out. The roles of wild type and mutant alternate between $V_1$, $V_2$, $V_3$ in a deterministic way (see comments and formal algorithm outlined in the thesis report).
+
+This version only features deterministic dynamics beyond the initial conditions randomisation but can easily be adapted following the code in the simple simulator. 
+
+Definition in file \hyperlink{egs__cycle__evol_8cpp_source}{egs\-\_\-cycle\-\_\-evol.\-cpp}.
+
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{egs__cycle__evol_8cpp_a710c910ce817e26598bff4f460543a8c}{\index{egs\-\_\-cycle\-\_\-evol.\-cpp@{egs\-\_\-cycle\-\_\-evol.\-cpp}!L\-O\-W\-L\-I\-M@{L\-O\-W\-L\-I\-M}}
+\index{L\-O\-W\-L\-I\-M@{L\-O\-W\-L\-I\-M}!egs_cycle_evol.cpp@{egs\-\_\-cycle\-\_\-evol.\-cpp}}
+\subsubsection[{L\-O\-W\-L\-I\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\-O\-W\-L\-I\-M~1.\-0e-\/24}}\label{egs__cycle__evol_8cpp_a710c910ce817e26598bff4f460543a8c}
+
+
+Definition at line 59 of file egs\-\_\-cycle\-\_\-evol.\-cpp.
+
+\hypertarget{egs__cycle__evol_8cpp_a2babc58b2297dc982456952b7d29ea34}{\index{egs\-\_\-cycle\-\_\-evol.\-cpp@{egs\-\_\-cycle\-\_\-evol.\-cpp}!sqs12@{sqs12}}
+\index{sqs12@{sqs12}!egs_cycle_evol.cpp@{egs\-\_\-cycle\-\_\-evol.\-cpp}}
+\subsubsection[{sqs12}]{\setlength{\rightskip}{0pt plus 5cm}\#define sqs12~(2.\-0$\ast$sqrt(r\mbox{[}0\mbox{]}\mbox{[}0\mbox{]}$\ast$r\mbox{[}1\mbox{]}\mbox{[}1\mbox{]}))}}\label{egs__cycle__evol_8cpp_a2babc58b2297dc982456952b7d29ea34}
+\hypertarget{egs__cycle__evol_8cpp_a20db28a5a5ded6e04e49732509c813d1}{\index{egs\-\_\-cycle\-\_\-evol.\-cpp@{egs\-\_\-cycle\-\_\-evol.\-cpp}!sqs13@{sqs13}}
+\index{sqs13@{sqs13}!egs_cycle_evol.cpp@{egs\-\_\-cycle\-\_\-evol.\-cpp}}
+\subsubsection[{sqs13}]{\setlength{\rightskip}{0pt plus 5cm}\#define sqs13~(2.\-0$\ast$sqrt(r\mbox{[}0\mbox{]}\mbox{[}0\mbox{]}$\ast$r\mbox{[}2\mbox{]}\mbox{[}2\mbox{]}))}}\label{egs__cycle__evol_8cpp_a20db28a5a5ded6e04e49732509c813d1}
+\hypertarget{egs__cycle__evol_8cpp_a5cca68ca87a6f47c600ac910419f17c1}{\index{egs\-\_\-cycle\-\_\-evol.\-cpp@{egs\-\_\-cycle\-\_\-evol.\-cpp}!sqs23@{sqs23}}
+\index{sqs23@{sqs23}!egs_cycle_evol.cpp@{egs\-\_\-cycle\-\_\-evol.\-cpp}}
+\subsubsection[{sqs23}]{\setlength{\rightskip}{0pt plus 5cm}\#define sqs23~(2.\-0$\ast$sqrt(r\mbox{[}1\mbox{]}\mbox{[}1\mbox{]}$\ast$r\mbox{[}2\mbox{]}\mbox{[}2\mbox{]}))}}\label{egs__cycle__evol_8cpp_a5cca68ca87a6f47c600ac910419f17c1}
+
+
+\subsection{Function Documentation}
+\hypertarget{egs__cycle__evol_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{\index{egs\-\_\-cycle\-\_\-evol.\-cpp@{egs\-\_\-cycle\-\_\-evol.\-cpp}!main@{main}}
+\index{main@{main}!egs_cycle_evol.cpp@{egs\-\_\-cycle\-\_\-evol.\-cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{egs__cycle__evol_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}
+
+
+Definition at line 62 of file egs\-\_\-cycle\-\_\-evol.\-cpp.
+

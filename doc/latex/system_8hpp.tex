@@ -1,0 +1,113 @@
+\hypertarget{system_8hpp}{\section{include/system.hpp File Reference}
+\label{system_8hpp}\index{include/system.\-hpp@{include/system.\-hpp}}
+}
+{\ttfamily \#include $<$string$>$}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classdatafile}{datafile}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{system_8hpp_ac76962bfc305081f633d353f54785490}{fdump} (double $\ast$$\ast$a, int n, F\-I\-L\-E $\ast$fout)
+\item 
+void \hyperlink{system_8hpp_a3270e5028d17bc3b55e069fbb407c065}{griddump} (double $\ast$$\ast$a, int nrows, int ncols, F\-I\-L\-E $\ast$fout)
+\item 
+bool \hyperlink{system_8hpp_ae4a9afa983669281ddd4d61ae85e7a52}{load\-\_\-state} (double $\ast$$\ast$a, int nrows, int ncols, const char $\ast$filepath)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This header contains classes and functions used to interact with the system (e.\-g. reading/writing data from files) 
+
+Definition in file \hyperlink{system_8hpp_source}{system.\-hpp}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{system_8hpp_ac76962bfc305081f633d353f54785490}{\index{system.\-hpp@{system.\-hpp}!fdump@{fdump}}
+\index{fdump@{fdump}!system.hpp@{system.\-hpp}}
+\subsubsection[{fdump}]{\setlength{\rightskip}{0pt plus 5cm}void fdump (
+\begin{DoxyParamCaption}
+\item[{double $\ast$$\ast$}]{a, }
+\item[{int}]{n, }
+\item[{F\-I\-L\-E $\ast$}]{fout}
+\end{DoxyParamCaption}
+)}}\label{system_8hpp_ac76962bfc305081f633d353f54785490}
+Write data matrix to {\itshape open} file, since it needs to be called during the simulation to save data.
+
+On error, the matrix content is dumped to stdout (terminal screen on most systems)
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a} & The concentration matrix for a species \\
+\hline
+\mbox{\tt in}  & {\em n} & The size of the matrix \\
+\hline
+\mbox{\tt out}  & {\em fout} & The output file \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 44 of file system.\-hpp.
+
+\hypertarget{system_8hpp_a3270e5028d17bc3b55e069fbb407c065}{\index{system.\-hpp@{system.\-hpp}!griddump@{griddump}}
+\index{griddump@{griddump}!system.hpp@{system.\-hpp}}
+\subsubsection[{griddump}]{\setlength{\rightskip}{0pt plus 5cm}void griddump (
+\begin{DoxyParamCaption}
+\item[{double $\ast$$\ast$}]{a, }
+\item[{int}]{nrows, }
+\item[{int}]{ncols, }
+\item[{F\-I\-L\-E $\ast$}]{fout}
+\end{DoxyParamCaption}
+)}}\label{system_8hpp_a3270e5028d17bc3b55e069fbb407c065}
+Write nrows x ncols data matrix to {\itshape open} file, since it needs to be called during the simulation to save data.
+
+The format of the concentration matrix evolution data for each species is a .dat file containing the matrix at each generation, separated by an empty line. The numerical values are stored as text, not binary, for human inspection.
+
+On error, the matrix content is dumped to stdout (terminal screen on most systems)
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a} & The concentration matrix for a species \\
+\hline
+\mbox{\tt in}  & {\em nrows,ncols} & The size of the matrix \\
+\hline
+\mbox{\tt out}  & {\em fout} & The output file \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 74 of file system.\-hpp.
+
+\hypertarget{system_8hpp_ae4a9afa983669281ddd4d61ae85e7a52}{\index{system.\-hpp@{system.\-hpp}!load\-\_\-state@{load\-\_\-state}}
+\index{load\-\_\-state@{load\-\_\-state}!system.hpp@{system.\-hpp}}
+\subsubsection[{load\-\_\-state}]{\setlength{\rightskip}{0pt plus 5cm}bool load\-\_\-state (
+\begin{DoxyParamCaption}
+\item[{double $\ast$$\ast$}]{a, }
+\item[{int}]{nrows, }
+\item[{int}]{ncols, }
+\item[{const char $\ast$}]{filepath}
+\end{DoxyParamCaption}
+)}}\label{system_8hpp_ae4a9afa983669281ddd4d61ae85e7a52}
+Load the state (concentration distribution) of a chemical species from file.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em a} & The square concentration matrix for a species \\
+\hline
+\mbox{\tt in}  & {\em nrows,ncols} & The size of the matrix \\
+\hline
+\mbox{\tt in}  & {\em filepath} & //\\
+\hline
+\mbox{\tt in}  & {\em from\-\_\-end} & The procedure reads the concentration matrix starting at the end of the file. This is used when resuming from outputs of previous simulations.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if no errors occured during read, else false.
+\end{DoxyReturn}
+Notes\-: If the size of the data (nrows or ncols) in filepath is less than that of the matrix a, the remaining entries are set to zero, and error signalled with return parameter. 
+
+Definition at line 208 of file system.\-hpp.
+
